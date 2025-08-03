@@ -1,0 +1,77 @@
+---
+# ===== 基础风格 =====
+BasedOnStyle: Google                              # 以Google风格为基础
+Language: Cpp                                     # 应用于C++代码
+Standard: Latest                                  # 使用最新C++标准
+
+# ===== 缩进与空格 =====
+AccessModifierOffset: -4                          # 访问修饰符缩进
+AlignAfterOpenBracket: Align                      # 括号后对齐
+# AlignConsecutiveDeclarations: true              # 连续声明对齐
+AlignEscapedNewlines: Left                        # 续行符左对齐
+AlignOperands: Align                              # 操作符对齐
+AlignTrailingComments: true                       # 尾部注释对齐
+AllowShortBlocksOnASingleLine: Empty              # 允许空代码块单行
+AllowShortCaseLabelsOnASingleLine: true           # case标签单行
+AllowShortFunctionsOnASingleLine: Inline          # 短函数单行
+AllowShortLambdasOnASingleLine: All               # 短lambda单行
+BreakBeforeBraces: Custom                         # 大括号换行自定义
+BraceWrapping:                                    # 大括号换行规则
+  AfterClass: false                               # 类后不换行
+  AfterFunction: false                            # 函数后不换行
+  AfterStruct: false                              # 结构体后不换行
+  AfterUnion: false                               # 联合体后不换行
+  AfterExternBlock: false                         # extern块后不换行
+  BeforeElse: false                               # else前不换行
+  BeforeWhile: false                              # while前不换行
+ColumnLimit: 120                                  # 行宽限制
+IndentCaseLabels: true                            # case标签缩进
+IndentWidth: 4                                    # 缩进宽度
+TabWidth: 4                                       # Tab宽度
+UseTab: Never                                     # 禁止使用Tab
+
+# ===== 指针与引用 =====
+DerivePointerAlignment: false                     # 继承指针对齐
+PointerAlignment: Left                            # 指针靠左: int* ptr;
+ReferenceAlignment: Left                          # 引用靠左: int& ref;
+
+# ===== 空行与空格 =====
+MaxEmptyLinesToKeep: 2                            # 最大连续空行
+KeepEmptyLinesAtTheStartOfBlocks: false           # 代码块起始不留空行
+SpacesBeforeTrailingComments: 2                   # 尾注前空格数
+SpacesInAngles: Never                             # 禁止模板尖括号内空格: vector<int>
+SpacesInContainerLiterals: true                   # 容器字面量内空格: {1, 2, 3}
+SpacesInParentheses: false                        # 禁止圆括号内空格
+SpacesInSquareBrackets: false                     # 禁止方括号内空格
+
+# ===== 换行策略 =====
+BreakBeforeBinaryOperators: NonAssignment         # 非赋值运算符前换行
+BreakConstructorInitializers: AfterColon          # 构造函数初始化列表冒号后换行
+BreakStringLiterals: true                         # 长字符串自动换行
+BinPackArguments: false                           # 函数参数不压缩排列
+BinPackParameters: false                          # 函数参数分行显示
+
+# ===== 函数与宏 =====
+AllowAllParametersOfDeclarationOnNextLine: false  # 函数声明参数不允许换行
+AlwaysBreakAfterReturnType: None                  # 返回类型后不强制换行
+AlwaysBreakTemplateDeclarations: MultiLine        # 多行模板声明换行
+FixNamespaceComments: true                        # 自动修复命名空间注释
+IndentPPDirectives: BeforeHash                    # 预处理指令缩进
+MacroBlockBegin: ''                               # 自定义宏块起始
+MacroBlockEnd: ''                                 # 自定义宏块结束
+
+# ===== 特殊格式 =====
+Cpp11BracedListStyle: true                        # 使用C++11大括号列表风格
+IncludeBlocks: Regroup                            # 头文件分组排序
+IncludeCategories:
+  - Regex: '^<.*\.h>'                             # 系统头文件
+    Priority: 1
+  - Regex: '^<.*'                                 # 其他系统头文件
+    Priority: 2
+  - Regex: '.*'                                   # 用户头文件
+    Priority: 3
+SortIncludes: CaseSensitive                       # 头文件排序区分大小写
+SortUsingDeclarations: true                       # 排序using声明
+
+# ===== Lambda表达式 =====
+LambdaBodyIndentation: Signature                  # lambda体缩进方式
