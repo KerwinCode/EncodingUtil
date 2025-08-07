@@ -1,110 +1,108 @@
-# EncodingUtil: 一个轻量级的C++编码转换库 (A Lightweight C++ Encoding Conversion Library)
+# EncodingUtil: 一个轻量级的 C++编码转换库 / A Lightweight C++ Encoding Conversion Library
 
 [![Language](https://img.shields.io/badge/Language-C++20-blue.svg)](https://isocpp.org/)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen.svg)](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-brightgreen.svg)
 [![Standard](https://img.shields.io/badge/Standard-Header--Only-orange.svg)](https://img.shields.io/badge/Standard-Header--Only-orange.svg)
 
-`EncodingUtil` 是一个跨平台的、仅需头文件的C++库，专注于 `UTF-8` 和 `GBK` 两种编码的检测与相互转换。它零依赖（在各平台均使用系统原生API），并为 `string_view` 和 `u8string` 提供了现代化的接口。
+`EncodingUtil` 是一个跨平台的、仅需头文件的 C++库，专注于 `UTF-8` 和 `GBK` 两种编码的检测与相互转换。它零依赖（在各平台均使用系统原生 API），并为 `string_view` 和 `u8string` 提供了现代化的接口。
 
 `EncodingUtil` is a cross-platform, header-only C++ library focused on the detection and mutual conversion between `UTF-8` and `GBK` encodings. It has zero external dependencies (using native system APIs on each platform) and provides modern interfaces for `string_view` and `u8string`.
 
-## ✨ 特性 (Features)
+## ✨ 特性 / Features
 
-*   **编码检测 (Encoding Detection)**:
-    *   能够检测字节流是 `UTF-8`, `GBK`, `ASCII` 还是 `UNKNOWN`（未知/无效）编码。Detects if a byte stream is encoded in `UTF-8`, `GBK`, `ASCII`, or `UNKNOWN` (invalid).
-    *   能够识别并处理不完整的字节序列。Capable of identifying and handling incomplete byte sequences correctly.
-*   **编码转换 (Encoding Conversion)**:
-    *   在 `UTF-8` 和 `GBK` 之间进行高效、可靠的相互转换。Performs efficient and reliable mutual conversions between `UTF-8` and `GBK`.
-    *   **严格遵守GBK标准**: 当一个UTF-8字符（如Emoji "😂"）在GBK中无法表示时，会抛出 `std::runtime_error` 异常，而不是静默替换。**Strict GBK Compliance**: Throws a `std::runtime_error` exception when a UTF-8 character (like an Emoji "😂") cannot be represented in GBK, instead of silent substitution.
-*   **现代化C++接口 (Modern C++ Interface)**:
-    *   所有核心函数都接受 `std::string_view` 作为输入，避免不必要的内存拷贝。All core functions accept `std::string_view` as input to prevent unnecessary memory copies.
-    *   在C++20环境下，自动提供对 `std::u8string` 和 `std::u8string_view` 的重载支持。Automatically provides overload support for `std::u8string` and `std::u8string_view` in a C++20 environment.
-*   **跨平台与零依赖 (Cross-Platform & Zero-Dependency)**:
-    *   在 **Windows** 上，使用原生的 `Win32 API` (`MultiByteToWideChar`)。On **Windows**, it uses the native `Win32 API` (`MultiByteToWideChar`).
-    *   在 **Linux** 和 **macOS** 上，使用标准的 `iconv` 库 (POSIX原生)。On **Linux** and **macOS**, it uses the standard `iconv` library (native to POSIX).
-*   **仅需头文件 (Header-Only)**:
-    *   只需将 `include/encoding_util/encoding_util.hpp` 文件包含到您的项目中即可使用。Simply include the `include/encoding_util/encoding_util.hpp` file in your project to get started.
+### 🔍 编码检测 / Encoding Detection
 
-## 🚀 快速开始 (Quick Start)
+- 检测字节流编码类型： `UTF-8`, `GBK`, `ASCII` 或 `UNKNOWN`（未知/无效）  
+  Detects encoding types: `UTF-8`, `GBK`, `ASCII`, or `UNKNOWN` (invalid).
+- 识别并正确处理不完整的字节序列  
+  Correctly identifies and handles incomplete byte sequences.
 
-### 1. 集成 (Integration)
+### 🔄 编码转换 / Encoding Conversion
 
-将 `include/encoding_util/encoding_util.hpp` 文件复制到您的项目头文件目录中，并在需要的地方包含它。
+- 在 `UTF-8` 和 `GBK` 间高效可靠地相互转换  
+  Efficient and reliable mutual conversions between `UTF-8` and `GBK`.
+- **严格遵守 GBK 标准**：无法转换的字符（如 Emoji "😂"）抛出 `std::runtime_error`，而非静默替换  
+  **Strict GBK Compliance**: Throws `std::runtime_error` for unconvertible characters (e.g., Emoji "😂"), no silent substitution.
 
-Copy the `include/encoding_util/encoding_util.hpp` file into your project's include directory and include it where needed.
+### 💻 现代 C++ 接口 / Modern C++ Interface
 
-```cpp
-#include "encoding_util/encoding_util.hpp"
-#include <iostream>
+- 所有函数接受 `std::string_view` 输入，避免内存拷贝  
+  All functions accept `std::string_view` to prevent memory copies.
+- C++20 环境下自动支持 `std::u8string` 和 `std::u8string_view`  
+  Automatic support for `std::u8string` and `std::u8string_view` in C++20.
+
+### 🌐 跨平台与零依赖 / Cross-Platform & Zero-Dependency
+
+- **Windows**：原生 `Win32 API` (`MultiByteToWideChar`)  
+  Uses native `Win32 API` (`MultiByteToWideChar`).
+- **Linux/macOS**：标准 `iconv` 库 (POSIX 原生)  
+  Uses standard `iconv` library (native to POSIX).
+
+### 📦 仅需头文件 / Header-Only
+
+- 包含 `include/encoding_util/encoding_util.hpp` 即可使用  
+  Simply include `include/encoding_util/encoding_util.hpp` to start.
+
+## 🚀 快速开始 / Quick Start
+
+### 1️⃣ 集成 / Integration
+
+```bash
+# 复制头文件到项目目录 / Copy header to project
+cp include/encoding_util/encoding_util.hpp your_project/include/
 ```
 
-### 2. 使用示例 (Usage Example)
+```cpp
+#include "encoding_util/encoding_util.hpp"
+```
 
-这是一个展示核心功能的简单示例。
-
-Here is a simple example demonstrating the core functionalities.
+### 2️⃣ 使用示例 / Usage Example
 
 ```cpp
 #include <iostream>
-#include <string>
 #include <stdexcept>
+#include <string>
 #include "encoding_util/encoding_util.hpp"
 
-// 一个辅助函数，用于打印编码类型
-void print_encoding(encoding_util::Encoding enc) {
-    switch (enc) {
-        case encoding_util::Encoding::UTF8:   std::cout << "UTF-8";   break;
-        case encoding_util::Encoding::GBK:    std::cout << "GBK";     break;
-        case encoding_util::Encoding::ASCII:  std::cout << "ASCII";   break;
-        case encoding_util::Encoding::UNKNOWN:std::cout << "Unknown"; break;
-    }
-}
 
 int main() {
-    // --- 1. 编码检测 (Encoding Detection) ---
-    std::cout << "--- 1. Encoding Detection ---" << std::endl;
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);  // 设置控制台输出为 UTF-8 编码
+#endif
 
-    const std::string utf8_str = "你好，世界"; // "你好，世界" 的 UTF-8 编码
-    const std::string gbk_str = "\xC4\xE3\xBA\xC3\xA3\xAC\xCA\xC0\xBD\xe7"; // "你好，世界" 的 GBK 编码
-    const std::string ascii_str = "Hello, World";
-
-    std::cout << "'" << utf8_str << "' is detected as: ";
-    print_encoding(encoding_util::detect_encoding(utf8_str));
-    std::cout << std::endl;
-
-    std::cout << "A GBK string is detected as: ";
-    print_encoding(encoding_util::detect_encoding(gbk_str));
-    std::cout << std::endl;
-
-    // --- 2. 编码转换 (Encoding Conversion) ---
-    std::cout << "\n--- 2. Encoding Conversion ---" << std::endl;
+    const std::string gbk_str = "\xC4\xE3\xBA\xC3\xA3\xAC\xCA\xC0\xBD\xe7";  // "你好，世界" 的 GBK 编码
+    const std::string utf8_str = "你好，世界";
 
     try {
-        // 从 GBK 转换为 UTF-8
-        std::string converted_to_utf8 = encoding_util::gbk_to_utf8(gbk_str);
-        std::cout << "GBK string converted to UTF-8: " << converted_to_utf8 << std::endl;
+        // --- 1. 使用智能转换确保得到 UTF-8 ---
+        // to_utf8 会自动检测编码，仅在需要时转换
+        std::cout << "--- 1. Smart Conversion to UTF-8 ---" << std::endl;
 
-        // 从 UTF-8 转换为 GBK
-        std::string converted_to_gbk = encoding_util::utf8_to_gbk(utf8_str);
-        std::cout << "UTF-8 string converted to GBK successfully (bytes: " << converted_to_gbk.length() << ")." << std::endl;
-        
-        // 验证往返转换的无损性
-        if (encoding_util::gbk_to_utf8(converted_to_gbk) == utf8_str) {
-            std::cout << "Round-trip conversion is lossless." << std::endl;
+        std::string utf8_result_1 = encoding_util::to_utf8(gbk_str);  // 从GBK转换
+        std::cout << "Converted from GBK: " << utf8_result_1 << std::endl;
+
+        std::string utf8_result_2 = encoding_util::to_utf8(utf8_str);  // 本身就是UTF-8，无转换开销
+        std::cout << "Already UTF-8: " << utf8_result_2 << std::endl;
+
+        // --- 2. 编码判断 ---
+        std::cout << "\n--- 2. Encoding Checks ---" << std::endl;
+        if (encoding_util::is_gbk(gbk_str)) {
+            std::cout << "The first string is confirmed to be GBK." << std::endl;
+        }
+        if (encoding_util::is_utf8(utf8_str)) {
+            std::cout << "The second string is confirmed to be UTF-8." << std::endl;
         }
 
-    } catch (const std::runtime_error& e) {
-        std::cerr << "Conversion Error: " << e.what() << std::endl;
-    }
+        // --- 3. 智能转换为 GBK 并处理错误 ---
+        std::cout << "\n--- 3. Smart Conversion to GBK & Error Handling ---" << std::endl;
+        std::string gbk_result = encoding_util::to_gbk(utf8_str);
+        std::cout << "UTF-8 string converted to GBK successfully." << std::endl;
 
-    // --- 3. 错误处理 (Error Handling) ---
-    std::cout << "\n--- 3. Error Handling ---" << std::endl;
-
-    const std::string str_with_emoji = "这个字符无法在GBK中表示: 😂";
-
-    try {
+        // 尝试转换一个包含无法表示字符的字符串
+        const std::string str_with_emoji = "这个字符无法在GBK中表示: 😂";
         std::cout << "Attempting to convert a string with Emoji to GBK..." << std::endl;
-        encoding_util::utf8_to_gbk(str_with_emoji);
+        encoding_util::to_gbk(str_with_emoji);
+
     } catch (const std::runtime_error& e) {
         std::cerr << "Successfully caught expected exception: " << e.what() << std::endl;
     }
@@ -115,47 +113,43 @@ int main() {
 
 **预期输出 (Expected Output):**
 
-```
---- 1. Encoding Detection ---
-'你好，世界' is detected as: UTF-8
-A GBK string is detected as: GBK
+```text
+--- 1. Smart Conversion to UTF-8 ---
+Converted from GBK: 你好，世界
+Already UTF-8: 你好，世界
 
---- 2. Encoding Conversion ---
-GBK string converted to UTF-8: 你好，世界
-UTF-8 string converted to GBK successfully (bytes: 12).
-Round-trip conversion is lossless.
+--- 2. Encoding Checks ---
+The first string is confirmed to be GBK.
+The second string is confirmed to be UTF-8.
 
---- 3. Error Handling ---
+--- 3. Smart Conversion to GBK & Error Handling ---
+UTF-8 string converted to GBK successfully.
 Attempting to convert a string with Emoji to GBK...
-Successfully caught expected exception: WinAPI: 字符串包含目标编码(GBK)无法表示的字符。
+Successfully caught expected exception: 转换失败：字符串中包含无法在目标编码(GBK)中表示的字符。
 ```
-*(注意: Windows和Linux上的异常信息文本可能略有不同。)*
-*(Note: The exception message text may differ slightly between Windows and Linux.)*
 
+*注意: Windows和Linux上的异常信息文本可能略有不同。*
 
-## 🛠️ 构建与测试 (Building and Testing)
+*Note: The exception message text may differ slightly between Windows and Linux.*
 
-本项目使用 CMake (版本 >= 3.14) 和 GoogleTest 进行管理和测试。
-
-This project is managed and tested using CMake (version >= 3.14) and GoogleTest.
+## 🛠️ 构建与测试 / Building and Testing
 
 ```bash
-# 1. 克隆仓库 (Clone the repository)
-# git clone ...
+# 克隆仓库 / Clone repository
+git clone https://github.com/KerwinCode/EncodingUtil.git
 
-# 2. 创建构建目录 (Create a build directory)
-cmake -S . -B build
+# 生成构建系统 / Generate build system
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-# 3. 构建项目 (Build the project)
+# 编译项目 / Compile project
 cmake --build build
 
-# 4. 运行单元测试 (Run unit tests)
-cd build
-ctest
+# 运行测试 / Run tests
+cd build && ctest --verbose
 ```
 
-## 📜 许可 (License)
+## 📜 许可 / License
 
-本项目采用 MIT 许可。详情请见 `LICENSE` 文件。
+本项目采用 **MIT 许可证**，详见 LICENSE 文件。
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the **MIT License**, see LICENSE for details.
